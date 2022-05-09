@@ -1,0 +1,47 @@
+Assuming that you the following JOS kernel code is correct, what type should variable x have, uintptr_t, or physaddr_t?
+
+uintptr_t
+
+Questions)
+
+2)
+
++-------+--------------------------------+----------------------------------+
+|Entry  |Base Virtual Address            |Points to (logically)             |
++-------+--------------------------------+----------------------------------+
+|1023   |0xffc0000                       |Page Table for top 4MB of PHYSMEM |
++-------+--------------------------------+----------------------------------+
+|960    |0xf000000                       |Start of remapped phys mem        |
++-------+--------------------------------+----------------------------------+
+|959    |0xefc0000                       |Kernel Stack start                |
++-------+--------------------------------+----------------------------------+
+|956    |0xef00000                       |UPAGES                            |
++-------+--------------------------------+----------------------------------+
+|2      |0x00800000                      |UTEXT                             |
++-------+--------------------------------+----------------------------------+
+|1      |0x00400000                      |UTEMP                             |
++-------+--------------------------------+----------------------------------+
+|0      |0x00000000                      | nothing                          |
++-------+--------------------------------+----------------------------------+
+
+3)
+
+Because they do not have permissions which were set in the page directory. They are decided by the P_PTU bit.
+
+4)
+
+256MB it mentions in pmap.h
+
+5)
+
+page directory + 1024 page tables
+
+4KB*1024 + 4KB = 4100KB = around 4 MB
+
+6)
+
+We transition after the jmp instruction is executed in entry.S. We are able to execute because there is a bit of virtual addresses mapped.
+
+
+
+

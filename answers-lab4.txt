@@ -1,0 +1,17 @@
+Question 1.
+
+It is necessary in mpentry.S because we need the MPBOOTPHYS address. In boot.S it is linked to 0x7c00 which is not MPBOOTPHYS.
+
+Question 2.
+
+We need seperate stacks for each CPU because each time an interrupt happens the trap information is pushed onto the stack. The stacks will be overwritten.
+
+Question 3.
+
+Because all the environments have the same variable e. This is because it exists in the kernel.
+
+Question 4.
+
+Because when we switch from environment to environment we need to be able to come back to the state the previous environment was in so we can pick up where we left off.
+
+This happens in the trap() function.
